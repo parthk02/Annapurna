@@ -1,0 +1,39 @@
+.heading-text {
+  margin-top: 85px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.form {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+
+  .form-control {
+      margin-bottom: 30px;
+      padding: 15px;
+  }
+
+  textarea {
+      border: none;
+      border-bottom: 1px solid #212529;
+      ;
+  }
+
+  @media (max-width: 768px) {
+      .form {
+          width: 90%;
+      }
+  }
+}
+
+.submit-btn {
+  background-color: black;
+  color: white;
+  padding: 10px 25px;
+}
+
+.form-control:focus {
+  border-color: #FF0000;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}

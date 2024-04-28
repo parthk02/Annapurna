@@ -1,0 +1,78 @@
+<app-bread-crumb [title]="'Category'"></app-bread-crumb>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">All Categories</h5>
+                <button class="btn btn-primary" (click)="addCat()">Add Category</button>
+            </div>
+
+            <div class="table-responsive my-2">
+                <table class="table table-hover" small="true" hover="true">
+                    <thead>
+                        <tr>
+                            <th>Sr. No. </th>
+                            <th>Name</th>
+                            <th>Active</th>
+                            <th>Created At</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="data?.length == 0">
+                        <tr>
+                            <td colspan="5" class="text-center">No Categories Found</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="data.length > 0">
+                        <tr *ngFor="let data of data ; let i = index">
+                            <td class="align-middle">
+                                {{i+1}}
+                            </td>
+                            <td class="align-middle">
+                                {{data?.name}}
+                            </td>
+                            <td class="align-middle">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" [checked]="data?.status"
+                                        role="switch" (click)="changeStatus(data._id, data.status)"
+                                        id="flexSwitchCheckDefault">
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                {{data?.createdAt | date : 'medium'}}
+                            </td>
+                            <td class="align-middle">
+                                <div class="bttn-group">
+                                    <button class="bttn-round danger" (click)="deleteCategory(data._id)"><ion-icon
+                                            name="trash-outline"></ion-icon></button>
+                                    <button class="bttn-round info" (click)="addCat(data)"><ion-icon
+                                            name="pencil-outline"></ion-icon></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!-- <tfoot class="w-100">
+                        <tr>
+                            <td colspan="5">
+                                <div class="table-page">
+                                    <div class="page-controls">
+                                        <button (click)="prevPage()" [disabled]="currentPage == 0">Prev</button>
+                                        <input type="number" [value]="currentPageDisplay" min="1" max="7">
+                                        <button (click)="nextPage()">Next </button>
+                                    </div>
+                                    <div class="page-size">
+                                        <label class="mb-0 mr-2">Item per page</label>
+                                        <select #val (change)="changePage(val.value)" [value]="pageSize" class="form-control form-control-sm"
+                                                id="pageSelector">
+                                            <option *ngFor="let pG of numberOfPage" value="{{pG}}">{{pG}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot> -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.cs-card{
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 2px #00000010;
+    background-color: #fff;
+}
+
+.login{
+    background-color: #dfd2ff;
+    .login-form{
+        label, input{
+            font-family: var(--app-font-secondary) !important;
+
+        }
+    }
+}

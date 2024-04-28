@@ -1,0 +1,39 @@
+.cs-card{
+    background: #3437ff6d;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &.category{
+        background: #42ff34b6;
+    }
+    &.sub-category{
+        background: #ffcc346d;
+    }
+    &.product{
+        background: #ff34596d;
+    }
+    &.user{
+        background: #34c2ff6d;
+    }
+    &.orders{
+        background: #ff8c346d;
+    }
+    .stats{
+        p{
+            margin: 0;
+        }
+    }
+    .icon-con{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        background-color: #00000010;
+        border-radius: 50%;
+        font-size: 25px;
+    }
+}

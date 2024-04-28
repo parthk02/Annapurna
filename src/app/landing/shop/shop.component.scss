@@ -1,0 +1,100 @@
+.heading {
+    margin-top: 70px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .main-div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+  }
+  
+  .bttn-box button {
+    background-color: black;
+    color: white;
+    width: 150px;
+    border-radius: 0;
+  }
+  
+  .svg-box {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
+  
+  .svg-box img {
+    margin: 10px;
+    width: 20px;
+    opacity: 0.4;
+    transition: filter 0.5s ease-in-out;
+  }
+  
+  .svg-box img:hover,
+  .svg-box img.selected {
+    filter: invert(55%) sepia(35%) saturate(5647%) hue-rotate(331deg) brightness(111%) contrast(112%);
+  }
+  
+  .offcanvas-body .category-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .offcanvas-body .category-list li {
+    padding-bottom: 25px;
+    font-size: 15px;
+    color: #30363e;
+  }
+  
+  .offcanvas-body .category-list a:hover {
+    color: var(--app-main);
+  }
+  
+  .offcanvas-body .price-range .form-range label {
+    text-align: center;
+  }
+  
+  .color .color-v {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    border-radius: 15px;
+    margin-left: 15px;
+    border: 1px solid black;
+  }
+  
+  .color .color-1 {
+    background-color: #007bff;
+  }
+  
+  .color .color-2 {
+    background-color: #dc3545;
+  }
+  
+  .color .color-3 {
+    background-color: #28a745;
+  }
+  
+  .color .color-4 {
+    background-color: #fff;
+  }
+  
+  .color .color-5 {
+    background-color: red;
+  }
+  
+  .color .color-6 {
+    background-color: yellow;
+  }
+  
+  .color .color-7 {
+    background-color: grey;
+  }
+  
+  .filter-box {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  

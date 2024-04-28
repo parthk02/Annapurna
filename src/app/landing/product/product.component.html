@@ -1,0 +1,39 @@
+
+
+<div class="container-fluid main-container" >
+    <div class="heading-text">
+      <h2 style="text-align: center;">Request Removal</h2>
+      <p style="text-align: center;">
+        How can we help you? We would love to hear from you. Fill out the form
+        below to send us your query.
+      </p>
+    </div>
+    <div class="alert" [ngClass]="{ 'alert-success': alertClass === 'success', 'alert-danger': alertClass === 'error' }" *ngIf="showAlert">
+      {{ alertMessage }}
+    </div>
+ 
+    <div class="form" >
+      <form (ngSubmit)= "remove(del)" #del="ngForm">
+        <label for="company">Reason:</label>
+        <input type="text"  name="reason"  [(ngModel)]="reason"  class="form-control">
+
+        <label for="company">Give Feedback:</label>
+        <input type="text"  name="feedback"  [(ngModel)]="feedback"  class="form-control">
+   <br>
+    <div class="form-group">
+        <label for="company">Report a problem in brief:</label>
+        <textarea
+          class="form-control"
+          placeholder="Message"
+          name="message"
+          [(ngModel)]="message"
+          style="height: 100px"
+        ></textarea>
+    </div>
+      
+     <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+ 
+  

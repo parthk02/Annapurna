@@ -1,0 +1,359 @@
+<div class="modal-header ah-body">
+    <h4 class="modal-title pull-left">Add Product</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body ah-body">
+    <form>
+        <div class="card ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Information</h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product Title</label>
+                    <input type="text" class="form-control" [(ngModel)]="title" placeholder="Please enter title"
+                        name="productName" (ngModelChange)="createSlug(title)" id="productName">
+                </div>
+                <div class="mb-3">
+                    <label for="slug" class="form-label">Slug</label>
+                    <input type="text" class="form-control" [(ngModel)]="titleSlug"
+                        placeholder="Slug will be automatically created if you want to change something in it you can do it."
+                        name="slug" id="slug">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" [(ngModel)]="category" name="category"
+                        (change)="getSubCategoryData(category)">
+                        <option value="" disabled selected>Please select a category</option>
+                        <option *ngFor="let item of categoryData; let i = index" [value]="item._id" name="category">
+                            {{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="subcategory" class="form-label">Sub Category</label>
+                    <select class="form-select" [(ngModel)]="subCategory" (change)="onsbcatChange()" name="subcategory">
+                        <option value="" *ngIf="subCategoryData.length > 0" selected>Please select a sub
+                            category</option>
+                        <option value="" *ngIf="subCategoryData.length == 0" selected>Please select or create a
+                            category First</option>
+                        <option *ngFor="let item of subCategoryData; let i = index" [value]="item._id"
+                            name="subcategory">
+                            {{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="minQty" class="form-label">Minimum Qty</label>
+                    <input type="number" class="form-control" [(ngModel)]="minQty" name="minQty" id="minQty">
+                </div>
+            </div>
+        </div>
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Thumbnails</h5>
+                <div class="mb-3">
+                    <label for="thumnail1" class="form-label">Thumbnail 1</label>
+                    <input type="file" class="form-control" [ngModel]="file_upload"
+                        (change)="onFileChange($event, 'thumb1')" name="thumnail1" id="thumnail1">
+                </div>
+                <div class="mb-3">
+                    <label for="thumnail2" class="form-label">Thumbnail 2</label>
+                    <input type="file" class="form-control" [ngModel]="file_upload"
+                        (change)="onFileChange($event, 'thumb2')" name="thumnail2" id="thumnail2">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Images</h5>
+                <div class="mb-3">
+                    <label for="productImages" class="form-label">Product Images</label>
+                    <input type="file" class="form-control" multiple [ngModel]="file_upload"
+                        (change)="detectFiles($event)" name="productImages" id="productImages">
+                </div>
+                <div class="mb-3">
+                    <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                </div>
+            </div>
+        </div> -->
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Images</h5>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages1" class="form-label">Product Images 1</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event , 1)"
+                                name="productImages1" id="productImages1">
+                            <div class="image-wrap" *ngIf="productImageUrl1">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(1)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl1" alt="Category Images" width="200">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages2" class="form-label">Product Images 2</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event,2)"
+                                name="productImages2" id="productImages2">
+                            <div class="image-wrap" *ngIf="productImageUrl2">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(2)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl2" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages3" class="form-label">Product Images 3</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event, 3)"
+                                name="productImages3" id="productImages3">
+                            <div class="image-wrap" *ngIf="productImageUrl3">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(3)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl3" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages4" class="form-label">Product Images 4</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event, 4)"
+                                name="productImages4" id="productImages4">
+                            <div class="image-wrap" *ngIf="productImageUrl4">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(4)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl4" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages5" class="form-label">Product Images 5</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event, 5)"
+                                name="productImages5" id="productImages5">
+                            <div class="image-wrap" *ngIf="productImageUrl5">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(5)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl5" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages6" class="form-label">Product Images 6</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event , 6)"
+                                name="productImages6" id="productImages6">
+                            <div class="image-wrap" *ngIf="productImageUrl6">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(6)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl6" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages7" class="form-label">Product Images 7</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event, 7)"
+                                name="productImages7" id="productImages7">
+                            <div class="image-wrap" *ngIf="productImageUrl7">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(7)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl7" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-3">
+                            <label for="productImages8" class="form-label">Product Images 8</label>
+                            <input type="file" class="form-control" (change)="productImageUpload($event, 8)"
+                                name="productImages8" id="productImages8">
+                            <div class="image-wrap" *ngIf="productImageUrl8">
+                                <button class="bttn-round close-bttn" (click)="deleteImage(8)"><ion-icon
+                                        name="close-circle-outline"></ion-icon></button>
+                                <img [src]="productImageUrl8" alt="Category Images" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="180">
+                </div>
+
+            </div>
+        </div>
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Attribute</h5>
+                <div class="mb-3">
+                    <label for="productColor" class="form-label">Product Color</label>
+                    <app-multi-select-dropdown [list]="colorList" [color]="true" [selectedData]="selectedDataColor"
+                        (shareCheckedList)="shareCheckedList($event)"
+                        (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
+                    </app-multi-select-dropdown>
+                </div>
+                <div class="mb-3">
+                    <label for="productSize" class="form-label">Product Size</label>
+                    <div class="input-group mb-3">
+                        <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+                        <!-- <input type="text" class="form-control" placeholder="size"> -->
+                        <select class="form-select" [(ngModel)]="size" name="subcategory">
+                            <option value="" name="size" selected>please Select Size</option>
+                            <option *ngFor="let item of sizeList; let i = index" [value]="i" name="size">
+                                {{item.label}}
+                            </option>
+                        </select>
+                        <input type="text" class="form-control" name="sizePrice" [(ngModel)]="sizePrice"
+                            placeholder="price">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="addSize()" type="button"
+                                [disabled]="sizePrice == '' ">Add
+                                Size</button>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedSize.length > 0" class="selected-size-list">
+                        <span *ngFor="let item of selectedSize; let i = index">
+                            <p> {{item.label}} </p>
+                            <p>{{item.price}}</p> <ion-icon class="text-danger w-100" (click)="removeSize(i)"
+                                name="trash-outline"></ion-icon>
+                        </span>
+                    </div>
+                    <!-- <app-multi-select-dropdown [list]="sizeList" [selectedData]="selectedDataSize"
+                        (shareCheckedList)="shareCheckedListSize($event)"
+                        (shareIndividualCheckedList)="shareIndividualCheckedListSize($event)">
+                    </app-multi-select-dropdown> -->
+                </div>
+
+            </div>
+        </div>
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Price + Discount</h5>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Product price</label>
+                    <input type="number" class="form-control" [(ngModel)]="productPrice"
+                        placeholder="Please enter price" name="productPrice" id="productPrice">
+                </div>
+                <div class="mb-3">
+                    <label for="productDiscountType" class="form-label">Product price</label>
+                    <select class="form-select" [(ngModel)]="productDiscountType" name="subcategory">
+                        <option [value]="null" name="productDiscountType">Off</option>
+                        <option [value]="'percent'" name="productDiscountType">Percent</option>
+                        <option [value]="'flat'" name="productDiscountType">Flat</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="productDiscount" class="form-label">Product Discount ( {{this.productDiscountType ==
+                        'percent' ? '%' : 'Flat'}} )</label>
+                    <input type="number" class="form-control" [(ngModel)]="productDiscount"
+                        placeholder="Please enter discount" name="productDiscount" id="productDiscount">
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Shipping</h5>
+                <div class="mb-3">
+                    <label for="shippingType" class="form-label">Product Shipping Type</label>
+                    <select class="form-select" [(ngModel)]="shippingType" name="subcategory">
+                        <option [value]="'free'" name="shippingType">Free Shipping</option>
+                        <option [value]="'percent'" name="shippingType">Percent</option>
+                        <option [value]="'flat'" name="shippingType">Flat</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="shippingCost" class="form-label">Product Shipping Cost ( {{this.shippingType ==
+                        'percent' ? '%' : '' }} {{this.shippingType == 'free' ? 'Free Shipping' : '' }}
+                        {{this.shippingType == 'flat' ? 'Flat' : '' }} )</label>
+                    <input type="number" class="form-control" [(ngModel)]="shippingCost"
+                        placeholder="Please enter discount" name="shippingCost" id="shippingCost">
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Description</h5>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description </label>
+                    <ckeditor name="description" [(ngModel)]="productDescription" [editor]="Editor"></ckeditor>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product On Amazon</h5>
+                <div class="mb-3">
+                    <label for="amazonRating" class="form-label">Amazon Rating </label>
+                    <input type="number" class="form-control" [(ngModel)]="amazonRating"
+                        placeholder="Please enter Amazon Rating" name="amazonRating" id="amazonRating">
+                </div>
+                <div class="mb-3">
+                    <label for="amazonRatingNumber" class="form-label">Number of Ratings on Amazon ? </label>
+                    <input type="number" class="form-control" [(ngModel)]="amazonRatingNumber"
+                        placeholder="Please enter Amazon Rating" name="amazonRatingNumber" id="amazonRatingNumber">
+                </div>
+                <div class="mb-3">
+                    <label for="amazonProductLink" class="form-label">Amazon Product Link </label>
+                    <input type="text" class="form-control" [(ngModel)]="amazonProductLink"
+                        placeholder="Please enter Amazon Rating" name="amazonProductLink" id="amazonProductLink">
+                </div>
+            </div>
+        </div>
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product On Youtube</h5>
+                <div class="mb-3">
+                    <label for="youtubeVideo" class="form-label">Youtube Video Link </label>
+                    <input type="text" class="form-control" [(ngModel)]="youtubeVideo"
+                        placeholder="Please enter Youtube Video Link" name="youtubeVideo" id="youtubeVideo">
+                </div>
+            </div>
+        </div>
+        <div class="card my-2 ah-card">
+            <div class="card-body">
+                <h5 class="card-title">Product Meta Details</h5>
+                <div class="mb-3">
+                    <label for="metaTitle" class="form-label">Meta Title </label>
+                    <input type="text" class="form-control" [(ngModel)]="metaTitle"
+                        placeholder="Please enter Meta Title" name="metaTitle" id="metaTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="metaDescription" class="form-label">Meta Description </label>
+                    <textarea cols="10" rows="5" class="form-control" [(ngModel)]="metaDescription"
+                        placeholder="Please enter Meta Description" name="metaDescription"
+                        id="metaDescription"> </textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="metaKeyword" class="form-label">Meta Keyword </label>
+                    <input type="text" class="form-control" [(ngModel)]="metaKeyword" (keyup.enter)="addKeyword($event)"
+                        placeholder="Please enter Meta Keyword" name="metaKeyword" id="metaKeyword">
+                </div>
+                <div class="chip-list">
+                    <span class="chip" *ngFor="let item of metaKeywords; let i = index">
+                        {{item}} <ion-icon name="close-circle" (click)="removeKeyword(i, item)"></ion-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+<div class="modal-footer ah-body">
+    <button type="submit" (click)="addProduct()" class="btn btn-primary">Add</button>
+    <button type="submit" (click)="getEditorData()" class="btn btn-primary">get Editor Data</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="bsModalRef.hide()">Close</button>
+</div>

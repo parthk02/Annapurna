@@ -1,0 +1,80 @@
+
+
+<div class="container-fluid main-container" >
+    <div class="heading-text">
+      <h2 style="text-align: center;">GET IN TOUCH</h2>
+      <p style="text-align: center;">
+        How can we serve you? We would love to hear from you. Fill out the form
+        below to send us an email.
+      </p>
+    </div>
+    
+    <div class="alert" [ngClass]="{ 'alert-success': alertClass === 'success', 'alert-danger': alertClass === 'error' }" *ngIf="showAlert">
+      {{ alertMessage }}
+    </div>
+    <div class="form">
+      <form (ngSubmit)="contactus(condata)" #condata="ngForm">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="name"
+        [(ngModel)]="name"
+        name="name"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        class="form-control"
+        placeholder="Email"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="city"
+        name="city"
+        [(ngModel)]="city"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Address"
+        name="address"
+        [(ngModel)]="address"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Mobile"
+        name="mobile"
+        [(ngModel)]="mobile"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control"
+          placeholder="Message"
+          name="message"
+          [(ngModel)]="message"
+          style="height: 100px"
+        ></textarea>
+        
+      </div>
+      
+     <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+ 
+  

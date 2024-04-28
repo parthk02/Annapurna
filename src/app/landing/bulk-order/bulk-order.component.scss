@@ -1,0 +1,29 @@
+.bulk-order-container {
+  text-align: center;
+  .heading-first {
+    font-weight: 400;
+    font-family: "Arapey-Regular";
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    padding-top: 40px;
+  }
+  .heading-second {
+    font-weight: 200;
+    font-family: "Arapey-Regular";
+    font-size: 90px;
+    // padding-bottom: 15px;
+  }
+  .p1 {
+    color: #404040;
+    margin-bottom: 70px;
+  }
+  .bulk-order-image {
+    padding-bottom: 30px;
+  }
+  .p2,
+  .p3 {
+    color: #404040;
+    padding-bottom:30px;
+  }
+}

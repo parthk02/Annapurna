@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Add Sub Category</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!-- <ul *ngIf="list.length">
+      <li *ngFor="let item of list">{{item}}</li>
+    </ul> -->
+
+    <form>
+        <div class="mb-3">
+            <label for="categoryName" class="form-label">Sub Category name</label>
+            <input type="text" class="form-control" [(ngModel)]="subcatName" name="categoryName"
+                (ngModelChange)="createSlug(subcatName)" id="categoryName">
+        </div>
+        <div class="mb-3">
+            <label for="slug" class="form-label">Slug</label>
+            <input type="text" class="form-control" [(ngModel)]="subcatSlug" name="slug" id="slug">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="category" name="category">
+                <option *ngFor="let item of categoryData; let i = index" [value]="item._id" name="category">{{item.name}}
+                </option>
+            </select>
+        </div>
+        <div class="mb-3" *ngIf="!isImage">
+            <label for="thumnail" class="form-label">Thumbnail</label>
+            <input type="file" class="form-control" [ngModel]="file_upload" (change)="onFileChange($event)"
+                name="thumnail" id="thumnail">
+        </div>
+        <div class="mb-3" *ngIf="isImage" >
+            <div class="image-wrap">
+                <button class="bttn-round close-bttn" (click)="deleteImage()"><ion-icon name="close-circle-outline"></ion-icon></button>
+                <img [src]="baseURL + thumbnail" alt="Sub Category Images">
+            </div>
+        </div>
+        <!-- <button type="submit" (click)="submitForm()" class="btn btn-primary">Submit</button> -->
+    </form>
+
+
+</div>
+<div class="modal-footer">
+    <button type="submit" *ngIf="subCategory" (click)="editSubCat()" class="btn btn-primary">Edit</button>
+    <button type="submit" *ngIf="!subCategory" (click)="submitForm()" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

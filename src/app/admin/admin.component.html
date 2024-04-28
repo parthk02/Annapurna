@@ -1,0 +1,26 @@
+<div class="side-nav d-flex">
+    <div class="drawer" [ngClass]="isSideBarOpen ? 'close' : '' ">
+        <a (click)="isSideBarOpen = !isSideBarOpen" class="side-bar-btn"> <ion-icon name="menu-outline"></ion-icon></a>
+        
+        
+        <div style="margin-top: 55px;">
+
+            <div class="header flex-row"> <span class="logo"></span> </div>
+            
+            
+            <div class="navs flex-col">
+                <ul class="nav-items">
+                    <li class="nav-item flex-row" *ngFor="let item of navs" routerLinkActive="active"
+                    [routerLink]="item?.link">
+                    <ion-icon [name]="item?.icon"></ion-icon>
+                    <p class="title"> {{ item?.title }} </p>
+                </li>
+            </ul>
+        </div>
+           
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

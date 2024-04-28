@@ -1,0 +1,60 @@
+.offer-banner {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(249, 240, 137);
+    width: 100%;
+    transition: 1s all linear;
+    height: 25px;
+  }
+  
+  .offer-banner p {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .offer-banner .bttn-close {
+    float: right;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .offer-banner.hg00 {
+    height: 0 !important;
+    overflow: hidden;
+    transition: 1s all linear;
+  }
+  
+  @media (max-width: 320px) {
+    .offer-banner {
+      height: 0;
+      display: none;
+    }
+  }
+  
+  @media (min-width: 321px) and (max-width: 480px) {
+    /* Mobile styles for screen widths between 321px and 480px */
+    .offer-banner {
+      /* Update mobile styles here */
+      background: red;
+      height: 30px; /* Adjust the height as needed for mobile */
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 720px) {
+    /* Mobile styles for screen widths between 481px and 720px */
+    .offer-banner {
+      /* Update mobile styles here */
+      background: pink;
+      height: 35px; /* Adjust the height as needed for mobile */
+    }
+  }
+  
+  @media (min-width: 721px) and (max-width: 1024px) {
+    /* Tablet styles for screen widths between 721px and 1024px */
+    .offer-banner {
+      /* Update tablet styles here */
+      background: blue;
+      height: 40px; /* Adjust the height as needed for tablets */
+    }
+  }
+  

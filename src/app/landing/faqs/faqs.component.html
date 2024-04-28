@@ -1,0 +1,35 @@
+
+
+<div class="container-fluid main-container" >
+    <div class="heading-text">
+      <h2 style="text-align: center;">DAILY Pickup Time </h2>
+      <p style="text-align: center;">
+        please fill the from to help
+      </p>
+    </div>
+    
+    <div class="alert" [ngClass]="{ 'alert-success': alertClass === 'success', 'alert-danger': alertClass === 'error' }" *ngIf="showAlert">
+      {{ alertMessage }}
+    </div>
+    
+
+
+    <div class="form">
+      <form (ngSubmit)= "pickup(pick)" #pick="ngForm" >
+        <label for="company">Pickup Scheduling</label>
+      <input
+        type="time"
+        class="form-control"
+        placeholder="Pickup Time"
+        name="time"
+        [(ngModel)]="time"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+     
+      
+     <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Shipping Address</h2>
+
+            
+            <form (ngSubmit)="regformData(fomData)" #fomData="ngForm" >
+                <div class="form-group">
+                    <span class="login-text">Already have an account? <a href="#" routerLink="/login">Log in</a></span>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" [(ngModel)]="email" class="form-control" required>
+                </div>
+                    <label for="company">Name:</label>
+                        <input type="text" id="name" name="name" [(ngModel)]="name"  class="form-control">
+                   
+                    <div class="form-group">
+                        <label for="company">Restaurant Name:</label>
+                        <input type="text"  name="restaurantName" [(ngModel)]="restaurantName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Password:</label>
+                        <input type="password" name="password" [(ngModel)]="password" class="form-control">
+                    </div>
+                  
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" name="city" [(ngModel)]="city" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" [(ngModel)]="address" class="form-control" required>
+                    </div>
+
+                
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" name="mobile" [(ngModel)]="mobile" class="form-control" required>
+                    </div>
+
+                    
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+
+            
+        </div>
+
+        <div class="col-md-6 right-section">
+            <h2>Order Summary</h2>
+            <table class="table">
+            
+                <tbody>
+                    <!-- <td><img src="../../../assets/006.jpg" alt="Product 1" class="product-image">
+                    </td> -->
+                    <td>
+                        "Let us turn our compassion into action, for it is in reducing food waste and nourishing the needy that we serve happiness on a platter of kindness."<br>
+                    </td>
+                  <br>
+                    <!-- Add more rows for additional products -->
+                </tbody>
+            </table>
+
+            <div class="subtotal">
+                <span class="subtotal-label">Subtotal</span>
+                <span class="subtotal-value">&#8377;2100</span>
+              </div>
+              <div class="shipping">
+                <span class="shipping-label">Shipping</span>
+                <span class="shipping-value">Calculated at next step</span>
+              </div>
+              <div class="estimated-taxes">
+                <span class="taxes-label">Estimated taxes</span>
+                <span class="taxes-value">&#8377;400</span>
+              </div>
+              <div class="total">
+                <span class="total-label">Total</span>
+                <span class="total-value">INR 2500</span>
+              </div>
+        </div>
+    </div>
+</div>

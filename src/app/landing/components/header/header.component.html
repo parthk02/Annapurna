@@ -1,0 +1,38 @@
+<app-top-banner></app-top-banner>
+<div class="main-header-desk animated fadeInDown" id="navbar">
+
+    <div class="header-inner">
+        <div class="logo">
+            <a routerLink="/home">
+                <img src="../../../../assets/logo.jpg" alt="Agwani Handicraft" />
+                <h2 class="title">Annapurna Foundation</h2>
+            </a>
+        </div>
+        <div class="navs-menu">
+           
+            <a class="nav-link" routerLink="/collection">About Us</a>
+            <a class="nav-link" routerLink="/checkout">Become A Partner</a>
+            <div class="dropdown">
+                <a class="nav-link" routerLink="">Our Works</a>
+                <div class="dropdown-content">
+                    <a href="/about/inspiration">Daily Event</a>
+                    <a href="/about/qualityassurance">Request Food </a>
+                    <a href="/contact">CONTACT US</a>
+                </div>
+            </div>
+            <a class="nav-link" routerLink="/Blog">Blog and Info</a>
+        </div>
+        <div class="bttn-grp">
+           
+            <a routerLink="/user"><ion-icon name="person-outline"></ion-icon></a>
+          
+            <a *ngIf="isLogin" (click)="logout()"><ion-icon name="log-out-outline"></ion-icon></a>
+        </div>
+
+       
+    </div>
+   
+</div>
+
+
+

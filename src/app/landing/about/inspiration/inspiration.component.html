@@ -1,0 +1,77 @@
+
+
+<div class="container-fluid main-container" >
+    <div class="heading-text">
+      <h2 style="text-align: center;">DAILY EVENT</h2>
+      <p style="text-align: center;">
+        please fill the from to help
+      </p>
+    </div>
+
+    <div class="alert" [ngClass]="{ 'alert-success': alertClass === 'success', 'alert-danger': alertClass === 'error' }" *ngIf="showAlert">
+      {{ alertMessage }}
+    </div>
+
+    <div class="form">
+      <form (ngSubmit)="getformData(formData)" #formData="ngForm">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Name"
+        name="name"
+        id="exampleInputEmail1"
+        [(ngModel)]="name"
+        aria-describedby="emailHelp"
+      />
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="email"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      
+      <input
+      type="text"
+      class="form-control"
+      placeholder="Enter your city"
+      name="city"
+      id="exampleInputEmail1"
+      [(ngModel)]="city"
+      aria-describedby="emailHelp"
+    />
+    <input
+    type="text"
+    class="form-control"
+    placeholder="Enter your Address"
+    name="address"
+    [(ngModel)]="address"
+    id="exampleInputEmail1"
+    aria-describedby="emailHelp"
+  />
+      <input
+        type="time"
+        class="form-control"
+        placeholder="Event End AT"
+        name="event_end_at"
+        [(ngModel)]="event_end_at"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <input
+      type="text"
+      class="form-control"
+      placeholder="Quantity oF Food"
+      name="food"
+      [(ngModel)]="food"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+    />
+      
+     <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    </div>
+  </div>
+  
